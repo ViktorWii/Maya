@@ -1,6 +1,6 @@
 //Maya ASCII 2020 scene
 //Name: GableRoof.ma
-//Last modified: Mon, Oct 05, 2020 06:49:19 PM
+//Last modified: Mon, Oct 05, 2020 07:11:27 PM
 //Codeset: 1251
 requires maya "2020";
 requires "mtoa" "4.0.0";
@@ -10,18 +10,18 @@ fileInfo "product" "Maya 2020";
 fileInfo "version" "2020";
 fileInfo "cutIdentifier" "201911140446-42a737a01c";
 fileInfo "osv" "Microsoft Windows 10 Technical Preview  (Build 19041)\n";
-fileInfo "UUID" "9353B0A9-4FD8-DC08-A943-429C5255A114";
+fileInfo "UUID" "8AC00A9E-4077-B084-5CB1-9782BD47B13C";
 fileInfo "license" "student";
 createNode transform -s -n "persp";
 	rename -uid "FA620E84-49ED-00DA-058C-258E9506546F";
 	setAttr ".v" no;
-	setAttr ".t" -type "double3" 25.76234130784767 7.9382905740756993 294.46490859028137 ;
-	setAttr ".r" -type "double3" -1.5383527296026895 5.0000000000002043 -1.24714995454861e-17 ;
+	setAttr ".t" -type "double3" 116.04264243460021 19.540878147120548 91.316555118661142 ;
+	setAttr ".r" -type "double3" -7.5383527296027379 51.800000000000217 6.4289123202001981e-16 ;
 createNode camera -s -n "perspShape" -p "persp";
 	rename -uid "C313E830-442D-2ECB-2D4B-1286A1E4291B";
 	setAttr -k off ".v" no;
 	setAttr ".fl" 34.999999999999993;
-	setAttr ".coi" 295.69629195844186;
+	setAttr ".coi" 148.95117999095845;
 	setAttr ".imn" -type "string" "persp";
 	setAttr ".den" -type "string" "persp_depth";
 	setAttr ".man" -type "string" "persp_mask";
@@ -79,21 +79,25 @@ createNode camera -s -n "sideShape" -p "side";
 	setAttr ".ai_translator" -type "string" "orthographic";
 createNode transform -n "pCube1";
 	rename -uid "917641EE-437D-7BBB-47FF-8B9A62F3FEFC";
-	setAttr ".t" -type "double3" 0 4.5 0 ;
-	setAttr ".s" -type "double3" 100 9 100 ;
+	setAttr ".t" -type "double3" 0 2.25 0 ;
+	setAttr ".r" -type "double3" 0 90 0 ;
+	setAttr ".s" -type "double3" 50 4.5 50 ;
 createNode mesh -n "pCubeShape1" -p "pCube1";
 	rename -uid "40D2BF37-4EA3-EAEC-44AB-5E96DE09BA62";
 	setAttr -k off ".v";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
-	setAttr ".pv" -type "double2" 0.5 0.375 ;
+	setAttr ".pv" -type "double2" 0.5 0.125 ;
 	setAttr ".uvst[0].uvsn" -type "string" "map1";
 	setAttr ".cuvs" -type "string" "map1";
 	setAttr ".dcc" -type "string" "Ambient+Diffuse";
 	setAttr ".covm[0]"  0 1 1;
 	setAttr ".cdvm[0]"  0 1 1;
-	setAttr -s 4 ".pt[2:5]" -type "float3"  0.49999475 0 0 -0.49999481 
-		0 0 0.49999484 0 0 -0.4999947 0 0;
+	setAttr -s 5 ".pt";
+	setAttr ".pt[2]" -type "float3" 0.49999475 0 0 ;
+	setAttr ".pt[3]" -type "float3" -0.49999481 0 0 ;
+	setAttr ".pt[4]" -type "float3" 0.49999484 0 0 ;
+	setAttr ".pt[5]" -type "float3" -0.4999947 0 0 ;
 	setAttr ".ai_translator" -type "string" "polymesh";
 createNode lightLinker -s -n "lightLinker1";
 	rename -uid "48B608A1-4D1B-4FCE-9E5A-BDA351FEA5E9";
