@@ -1,6 +1,6 @@
 //Maya ASCII 2020 scene
 //Name: GableRoof.ma
-//Last modified: Mon, Oct 05, 2020 07:51:54 PM
+//Last modified: Mon, Oct 05, 2020 07:54:44 PM
 //Codeset: 1251
 requires maya "2020";
 requires "mtoa" "4.0.0";
@@ -10,7 +10,7 @@ fileInfo "product" "Maya 2020";
 fileInfo "version" "2020";
 fileInfo "cutIdentifier" "201911140446-42a737a01c";
 fileInfo "osv" "Microsoft Windows 10 Technical Preview  (Build 19041)\n";
-fileInfo "UUID" "90EA88B2-43AA-39D1-2367-4A8E02335BA0";
+fileInfo "UUID" "8A940ED5-42D1-4A01-09C0-B9BE5D4A4E2C";
 fileInfo "license" "student";
 createNode transform -s -n "persp";
 	rename -uid "FA620E84-49ED-00DA-058C-258E9506546F";
@@ -77,12 +77,12 @@ createNode camera -s -n "sideShape" -p "side";
 	setAttr ".hc" -type "string" "viewSet -s %camera";
 	setAttr ".o" yes;
 	setAttr ".ai_translator" -type "string" "orthographic";
-createNode transform -n "pCube1";
+createNode transform -n "gableRoof";
 	rename -uid "917641EE-437D-7BBB-47FF-8B9A62F3FEFC";
 	setAttr ".t" -type "double3" 0 2.25 0 ;
 	setAttr ".r" -type "double3" 0 90 0 ;
 	setAttr ".s" -type "double3" 50 4.5 50 ;
-createNode mesh -n "gableRoof" -p "pCube1";
+createNode mesh -n "gableRoof" -p "|gableRoof";
 	rename -uid "40D2BF37-4EA3-EAEC-44AB-5E96DE09BA62";
 	setAttr -k off ".v";
 	setAttr ".vir" yes;
@@ -111,19 +111,19 @@ createNode mesh -n "pPlaneShape1" -p "pPlane1";
 	setAttr ".cdvm[0]"  0 1 1;
 	setAttr ".ai_translator" -type "string" "polymesh";
 createNode lightLinker -s -n "lightLinker1";
-	rename -uid "DBBA221D-4988-8C93-7944-DB86E503E16C";
+	rename -uid "71E0B3B6-4866-833C-EAAD-6591D15814B3";
 	setAttr -s 2 ".lnk";
 	setAttr -s 2 ".slnk";
 createNode shapeEditorManager -n "shapeEditorManager";
-	rename -uid "51BF56AA-40E9-D286-1E24-9C9870B408C0";
+	rename -uid "B64533C0-49E7-BAC9-407A-7EB184BC07B0";
 createNode poseInterpolatorManager -n "poseInterpolatorManager";
-	rename -uid "740E595B-40D0-2046-8843-5E9CE4B64F1D";
+	rename -uid "42FD1A5B-45DF-FABF-8450-6B9D90B43507";
 createNode displayLayerManager -n "layerManager";
-	rename -uid "D4C6145F-4F7D-F764-A74E-6284A17B74D1";
+	rename -uid "13CB9009-42FF-0433-7A17-2689AB9B807A";
 createNode displayLayer -n "defaultLayer";
 	rename -uid "2E774ED0-430F-0FFD-57C7-83B17C60C7A4";
 createNode renderLayerManager -n "renderLayerManager";
-	rename -uid "239031BF-47AB-6BDB-4A3B-BE9F6D69BDE9";
+	rename -uid "A7E024F8-4CDA-D385-261C-47BE397297E5";
 createNode renderLayer -n "defaultRenderLayer";
 	rename -uid "12BBCBC5-4A2F-5369-AC5D-708EEC816762";
 	setAttr ".g" yes;
@@ -211,7 +211,7 @@ select -ne :defaultResolution;
 select -ne :hardwareRenderGlobals;
 	setAttr ".ctrs" 256;
 	setAttr ".btrs" 512;
-connectAttr "polyCube1.out" "gableRoof.i";
+connectAttr "polyCube1.out" "|gableRoof|gableRoof.i";
 connectAttr "polyPlane1.out" "pPlaneShape1.i";
 relationship "link" ":lightLinker1" ":initialShadingGroup.message" ":defaultLightSet.message";
 relationship "link" ":lightLinker1" ":initialParticleSE.message" ":defaultLightSet.message";
@@ -220,6 +220,6 @@ relationship "shadowLink" ":lightLinker1" ":initialParticleSE.message" ":default
 connectAttr "layerManager.dli[0]" "defaultLayer.id";
 connectAttr "renderLayerManager.rlmi[0]" "defaultRenderLayer.rlid";
 connectAttr "defaultRenderLayer.msg" ":defaultRenderingList1.r" -na;
-connectAttr "gableRoof.iog" ":initialShadingGroup.dsm" -na;
+connectAttr "|gableRoof|gableRoof.iog" ":initialShadingGroup.dsm" -na;
 connectAttr "pPlaneShape1.iog" ":initialShadingGroup.dsm" -na;
 // End of GableRoof.ma

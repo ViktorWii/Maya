@@ -1,6 +1,6 @@
 //Maya ASCII 2020 scene
 //Name: LeftRoof.ma
-//Last modified: Mon, Oct 05, 2020 07:52:13 PM
+//Last modified: Mon, Oct 05, 2020 07:54:32 PM
 //Codeset: 1251
 requires maya "2020";
 requires "mtoa" "4.0.0";
@@ -10,18 +10,18 @@ fileInfo "product" "Maya 2020";
 fileInfo "version" "2020";
 fileInfo "cutIdentifier" "201911140446-42a737a01c";
 fileInfo "osv" "Microsoft Windows 10 Technical Preview  (Build 19041)\n";
-fileInfo "UUID" "02617CB5-451D-B71C-C0E5-5AB62B742079";
+fileInfo "UUID" "4426F509-4050-2740-A5BF-BD9DFD50B6AD";
 fileInfo "license" "student";
 createNode transform -s -n "persp";
 	rename -uid "FA620E84-49ED-00DA-058C-258E9506546F";
 	setAttr ".v" no;
-	setAttr ".t" -type "double3" -100.80468902172103 27.963998905188223 15.245275866243146 ;
+	setAttr ".t" -type "double3" -200.11639221359786 55.513832015946953 30.264758854585342 ;
 	setAttr ".r" -type "double3" -15.338352729582471 278.59999999998473 0 ;
 createNode camera -s -n "perspShape" -p "persp";
 	rename -uid "C313E830-442D-2ECB-2D4B-1286A1E4291B";
 	setAttr -k off ".v" no;
 	setAttr ".fl" 34.999999999999993;
-	setAttr ".coi" 105.71655026422212;
+	setAttr ".coi" 209.86736670144072;
 	setAttr ".imn" -type "string" "persp";
 	setAttr ".den" -type "string" "persp_depth";
 	setAttr ".man" -type "string" "persp_mask";
@@ -90,11 +90,11 @@ createNode mesh -n "pPlaneShape1" -p "pPlane1";
 	setAttr ".covm[0]"  0 1 1;
 	setAttr ".cdvm[0]"  0 1 1;
 	setAttr ".ai_translator" -type "string" "polymesh";
-createNode transform -n "pCube2";
+createNode transform -n "leftRoof";
 	rename -uid "1D2ABEE1-46AB-5514-3059-80B383259E41";
 	setAttr ".t" -type "double3" 0 2.25 0 ;
 	setAttr ".s" -type "double3" 50 4.5 50 ;
-createNode mesh -n "leftRoof" -p "pCube2";
+createNode mesh -n "leftRoof" -p "|leftRoof";
 	rename -uid "E8A2D961-42E9-9DAF-CA99-F9969C7173B8";
 	setAttr -k off ".v";
 	setAttr ".vir" yes;
@@ -229,7 +229,7 @@ select -ne :hardwareRenderGlobals;
 	setAttr ".ctrs" 256;
 	setAttr ".btrs" 512;
 connectAttr "polyPlane1.out" "pPlaneShape1.i";
-connectAttr "polyDelEdge1.out" "leftRoof.i";
+connectAttr "polyDelEdge1.out" "|leftRoof|leftRoof.i";
 relationship "link" ":lightLinker1" ":initialShadingGroup.message" ":defaultLightSet.message";
 relationship "link" ":lightLinker1" ":initialParticleSE.message" ":defaultLightSet.message";
 relationship "shadowLink" ":lightLinker1" ":initialShadingGroup.message" ":defaultLightSet.message";
@@ -243,5 +243,5 @@ connectAttr "polyConnectComponents1.out" "polyConnectComponents2.ip";
 connectAttr "polyConnectComponents2.out" "polyDelEdge1.ip";
 connectAttr "defaultRenderLayer.msg" ":defaultRenderingList1.r" -na;
 connectAttr "pPlaneShape1.iog" ":initialShadingGroup.dsm" -na;
-connectAttr "leftRoof.iog" ":initialShadingGroup.dsm" -na;
+connectAttr "|leftRoof|leftRoof.iog" ":initialShadingGroup.dsm" -na;
 // End of LeftRoof.ma
