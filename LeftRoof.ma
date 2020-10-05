@@ -1,6 +1,6 @@
 //Maya ASCII 2020 scene
 //Name: LeftRoof.ma
-//Last modified: Mon, Oct 05, 2020 07:36:42 PM
+//Last modified: Mon, Oct 05, 2020 07:52:13 PM
 //Codeset: 1251
 requires maya "2020";
 requires "mtoa" "4.0.0";
@@ -10,13 +10,13 @@ fileInfo "product" "Maya 2020";
 fileInfo "version" "2020";
 fileInfo "cutIdentifier" "201911140446-42a737a01c";
 fileInfo "osv" "Microsoft Windows 10 Technical Preview  (Build 19041)\n";
-fileInfo "UUID" "5A583304-48D4-88B3-8A68-CEB62350492D";
+fileInfo "UUID" "02617CB5-451D-B71C-C0E5-5AB62B742079";
 fileInfo "license" "student";
 createNode transform -s -n "persp";
 	rename -uid "FA620E84-49ED-00DA-058C-258E9506546F";
 	setAttr ".v" no;
-	setAttr ".t" -type "double3" -64.319910513314483 12.770701479476541 82.920728982888321 ;
-	setAttr ".r" -type "double3" -6.9383527295856267 322.20000000000601 0 ;
+	setAttr ".t" -type "double3" -100.80468902172103 27.963998905188223 15.245275866243146 ;
+	setAttr ".r" -type "double3" -15.338352729582471 278.59999999998473 0 ;
 createNode camera -s -n "perspShape" -p "persp";
 	rename -uid "C313E830-442D-2ECB-2D4B-1286A1E4291B";
 	setAttr -k off ".v" no;
@@ -94,7 +94,7 @@ createNode transform -n "pCube2";
 	rename -uid "1D2ABEE1-46AB-5514-3059-80B383259E41";
 	setAttr ".t" -type "double3" 0 2.25 0 ;
 	setAttr ".s" -type "double3" 50 4.5 50 ;
-createNode mesh -n "pCubeShape2" -p "pCube2";
+createNode mesh -n "leftRoof" -p "pCube2";
 	rename -uid "E8A2D961-42E9-9DAF-CA99-F9969C7173B8";
 	setAttr -k off ".v";
 	setAttr ".vir" yes;
@@ -107,19 +107,19 @@ createNode mesh -n "pCubeShape2" -p "pCube2";
 	setAttr ".cdvm[0]"  0 1 1;
 	setAttr ".ai_translator" -type "string" "polymesh";
 createNode lightLinker -s -n "lightLinker1";
-	rename -uid "48B608A1-4D1B-4FCE-9E5A-BDA351FEA5E9";
+	rename -uid "24B96E6C-4F17-A7DA-0BC2-EBB0D7012201";
 	setAttr -s 2 ".lnk";
 	setAttr -s 2 ".slnk";
 createNode shapeEditorManager -n "shapeEditorManager";
-	rename -uid "6E2D87C7-4F13-E3D0-8CE8-B9B715E293F9";
+	rename -uid "88FF9EBD-43CB-E1ED-2AD1-A890453380BD";
 createNode poseInterpolatorManager -n "poseInterpolatorManager";
-	rename -uid "53FDC46A-44CF-D390-D75A-D685BD9720BE";
+	rename -uid "282BFBEE-48D5-9AEF-A8FA-90A98A1570D3";
 createNode displayLayerManager -n "layerManager";
-	rename -uid "E1A622D4-4E19-6BAB-8540-3DA05E0ACCBC";
+	rename -uid "F3C18EAA-4537-0C5A-AA88-4E9C6433AD32";
 createNode displayLayer -n "defaultLayer";
 	rename -uid "2E774ED0-430F-0FFD-57C7-83B17C60C7A4";
 createNode renderLayerManager -n "renderLayerManager";
-	rename -uid "C33CADC1-48B7-89DF-AF0E-83A65F0127CD";
+	rename -uid "077086D8-4050-57EC-9500-0580824EA6D8";
 createNode renderLayer -n "defaultRenderLayer";
 	rename -uid "12BBCBC5-4A2F-5369-AC5D-708EEC816762";
 	setAttr ".g" yes;
@@ -228,10 +228,8 @@ select -ne :defaultResolution;
 select -ne :hardwareRenderGlobals;
 	setAttr ".ctrs" 256;
 	setAttr ".btrs" 512;
-select -ne :ikSystem;
-	setAttr -s 4 ".sol";
 connectAttr "polyPlane1.out" "pPlaneShape1.i";
-connectAttr "polyDelEdge1.out" "pCubeShape2.i";
+connectAttr "polyDelEdge1.out" "leftRoof.i";
 relationship "link" ":lightLinker1" ":initialShadingGroup.message" ":defaultLightSet.message";
 relationship "link" ":lightLinker1" ":initialParticleSE.message" ":defaultLightSet.message";
 relationship "shadowLink" ":lightLinker1" ":initialShadingGroup.message" ":defaultLightSet.message";
@@ -245,5 +243,5 @@ connectAttr "polyConnectComponents1.out" "polyConnectComponents2.ip";
 connectAttr "polyConnectComponents2.out" "polyDelEdge1.ip";
 connectAttr "defaultRenderLayer.msg" ":defaultRenderingList1.r" -na;
 connectAttr "pPlaneShape1.iog" ":initialShadingGroup.dsm" -na;
-connectAttr "pCubeShape2.iog" ":initialShadingGroup.dsm" -na;
+connectAttr "leftRoof.iog" ":initialShadingGroup.dsm" -na;
 // End of LeftRoof.ma
